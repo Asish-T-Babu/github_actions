@@ -32,3 +32,9 @@ async def create_item(name: str, description: str = None, price: float = 0.0):
 @app.get("/raw/")
 async def raw():
     return PlainTextResponse("This is a plain text response from /raw/ endpoint aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
+
+# New API endpoint
+@app.get("/status/")
+async def status():
+    return {"status": "ok", "message": "API is running"}
