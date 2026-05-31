@@ -38,3 +38,9 @@ async def raw():
 @app.get("/status/")
 async def status():
     return {"status": "ok", "message": "API is running"}
+
+
+# Another new API endpoint
+@app.get("/hello/")
+async def hello():
+    return {"message": "Hello from the new API endpoint!"}
