@@ -1,1 +1,6 @@
 env
+.env
+alembic/versions/*.py
+alembic/versions/__pycache__/
+!alembic/versions/__init__.py
+__pycache__/

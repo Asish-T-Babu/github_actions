@@ -28,14 +28,7 @@ jobs:
 
             git pull
 
-            docker build -t fastapi-app .
+            docker compose down
 
-            docker stop fastapi-app || true
-            docker rm fastapi-app || true
-
-            docker run -d \
-              --restart unless-stopped \
-              --name fastapi-app \
-              -p 8000:8000 \
-              fastapi-app
+            docker compose up -d --build
           EOF
