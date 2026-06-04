@@ -27,5 +27,9 @@ services:
     ports:
       - "8000:8000"
 
+    volumes:
+      - alembic_versions:/app/alembic/versions
+
 volumes:
   postgres_data:
+  alembic_versions:
