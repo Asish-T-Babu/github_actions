@@ -31,8 +31,6 @@ async def create_user(
 async def get_users(
     db: AsyncSession = Depends(get_db),
 ):
-    result = await db.execute(
-        select(User)
-    )
+    result = await db.execute(select(User))
 
     return result.scalars().all()

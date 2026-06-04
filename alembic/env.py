@@ -7,9 +7,8 @@ from dotenv import load_dotenv
 from logging.config import fileConfig
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from app.database import Base  
-from app.models import * 
-
+from app.database import Base
+from app.models import *
 
 sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))
 
@@ -33,6 +32,7 @@ target_metadata = Base.metadata
 
 EXCLUDE_TABLES = {"cron_schedulers"}
 
+
 def include_object(object, name, type_, reflected, compare_to):
     """
     Exclude certain tables from Alembic migrations.
@@ -41,12 +41,14 @@ def include_object(object, name, type_, reflected, compare_to):
         return False
     return True
 
+
 def process_revision_directives(context, revision, directives):
-    if getattr(config.cmd_opts, 'autogenerate', False):
+    if getattr(config.cmd_opts, "autogenerate", False):
         script = directives[0]
         if script.upgrade_ops.is_empty():
             directives[:] = []
             print("No changes detected. Skipping migration file creation.")
+
 
 async def run_migrations_online():
     """Run migrations in 'online' mode."""
@@ -55,6 +57,7 @@ async def run_migrations_online():
     async with connectable.connect() as connection:
         # Run migrations with the connection in async context
         await connection.run_sync(do_run_migrations)
+
 
 def do_run_migrations(connection):
     """Configure and run migrations for the given connection."""
@@ -67,6 +70,7 @@ def do_run_migrations(connection):
 
     with context.begin_transaction():
         context.run_migrations()
+
 
 def run_migrations_offline():
     """Run migrations in 'offline' mode."""
